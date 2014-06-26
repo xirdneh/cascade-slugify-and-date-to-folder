@@ -34,9 +34,9 @@ import java.util.regex.Pattern;
 public final class SlugifyDateToFolderPath extends BaseAssetFactoryPlugin
 {
     /** The resource bundle key for the name of the plugin */
-    private static final String NAME_KEY = "ut.edu.cascade.plugin.name";
+    private static final String NAME_KEY = "sample.cascade.plugin.name";
     /** The resource bundle key for the description of the plugin */
-    private static final String DESC_KEY = "ut.edu.cascade.plugin.description";
+    private static final String DESC_KEY = "sample.cascade.plugin.description";
     /** The resource bundle key for the name of a parameter */
     //private static final String SIMPLE_PARAM_NAME_KEY = "parameter.simple.name";
     /** The resource bundle key for the description of a parameter */
@@ -71,6 +71,13 @@ public final class SlugifyDateToFolderPath extends BaseAssetFactoryPlugin
 		    slug = slug.replaceAll("^-+", "");
 		    slug = slug.replaceAll("-+$", "");
 		    page.setName(slug);
+		    
+		    /************************************
+		     * The code below is to grab the start-date metadata field value
+		     * and move the asset into /news/{year}/{month}/ folder
+		     * The variable message is just used for debugging.
+		     */
+		    
 		    message = "start with the folder thingy";
 		    Folder currentFolder = asset.getParentFolder();
 	        if (currentFolder == null)
@@ -120,7 +127,7 @@ public final class SlugifyDateToFolderPath extends BaseAssetFactoryPlugin
 		    }
 		    //this.setAllowCreation(false, message + "\n" + tmpPath + "\n" + folder.getIdentifier().getPath().getPathAsString() + "datePath: " + datePath);
 		} catch (Exception e) {
-			this.setAllowCreation(false, "Everything Cool");
+			this.setAllowCreation(false, "Not Cool");
 		}
     }
 
