@@ -1,5 +1,5 @@
 
-package ut.edu.cascade.plugin;
+package sample.cascade.plugin;
 
 
 import java.util.Date;
