@@ -83,9 +83,8 @@ public final class SlugifyDateToFolderPath extends BaseAssetFactoryPlugin
 	        if (currentFolder == null)
 	        {
 	            currentFolder = (Folder) this.readAssetForIdentifier(asset.getParentFolderIdentifier());
-	        }
-		    tmpPath = currentFolder.getIdentifier().getPath().getPathAsString();
-		    String[] currentPath = tmpPath.split("/");
+	        } 
+		    String[] currentPath = currentFolder.getIdentifier().getPath().getPathAsString().split("/");
 		    Folder folder = currentFolder;
 		    message = "got current folder " + asset.getPath();
 		    //get start-date, which is in a unix timestamp.
@@ -112,10 +111,6 @@ public final class SlugifyDateToFolderPath extends BaseAssetFactoryPlugin
 			    		children = folder.getChildren().iterator();
 			    		msg += i + ": Found " + dateFolder + " child of " + child.getParentFolder().getIdentifier().getPath().getPathAsString() + " new folder " + folder.getIdentifier().getPath().getPathAsString() + " ||| "; 
 			    		break;
-			    	} else {
-			    		//if (child.getIdentifier().getType().equals(EntityTypes.TYPE_FOLDER)){
-			    			//msg += " **folder not found: " + dateFolder + " : in " + child.getIdentifier().getPath().getPathAsString() + "**";
-			    		//}
 			    	}
 			    }
 		    }
@@ -127,7 +122,12 @@ public final class SlugifyDateToFolderPath extends BaseAssetFactoryPlugin
 		    }
 		    //this.setAllowCreation(false, message + "\n" + tmpPath + "\n" + folder.getIdentifier().getPath().getPathAsString() + "datePath: " + datePath);
 		} catch (Exception e) {
-			this.setAllowCreation(false, "Not Cool");
+			//this.setAllowCreation(false, "Not Cool");
+			throw new FatalPluginException("There was an error saving the asset.");
+            //For debugging
+            /*
+                this.setAllowCreation(false, "Error: " + msg);
+            */
 		}
     }
 
